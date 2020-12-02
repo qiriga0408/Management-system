@@ -1,0 +1,17 @@
+{
+    "common": {
+        "home": "Home",
+        "login": "Login",
+        "register": "Register",
+        "zw":"Chinese",
+        "ew":"English",
+        "bbjy":"EXCHANGE",
+        "fbjy":"FIAT",
+        "tlb":"ARBITRAGE FUND"
+    },
+    "message": {
+        "hint1": "Please Input Nickname",
+        "hint2": "Please Input Username",
+        "hint3": "Please Input Password"
+    }
+}

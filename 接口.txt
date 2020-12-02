@@ -1,0 +1,12 @@
+Op管理后台
+  1.法币交易订单列表
+  地址：/managers/v1/manager/bcotcorderlist
+  传参：coin_name币种名字，ttype 2购买1出售，uid，pageNo，pagesize，star，end
+  返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}}
+  解释：order_id订单id，coin_id币种id，coin_name币种名称，user_id用户id，order_type类型 2购买1出售，state状态 1 等待买家付款; 2 卖家确认收款／等待卖家发货; 3用户取消; 4 商家取消; 5 超时取消; 6交易完成(已放币）; 7：补充放款;，amount数量,legal_amount法币数量,platform_price汇率,balance剩余账户资产,lock_amount冻结资产,avail_amount可用资产,create_time创建时间,close_time完成时间,pay_order_id第三方交易id,ip_addressip地址,imei设备码	,order_client委托客户端（1: android 2: iOS 3: WEB 4: H5 5: open_api 6: 系统自动)
+
+  2.法币当日统计
+  地址：/managers/v1/manager/bcotcorderdaytotal
+  参数：pageNo，pagesize
+  返回：{"ret": 0,"msg": "","data":{"list": {"listinfo": [{}],"total": 1},"daytotal": {}}}
+  解释：stat_id数据id,coin_name币种名字,day_succ_purchase当日成功购买数量,day_succ_cny当日成功购买折合cny,total_succ_purchase累计成功购买数量,total_succ_cny累计成功购买折合cny,day_succ_order天完成订单数量,total_succ_order累计完成订单数量day_bus_cancel当天商家取消订单数量user_cancel	当天用户取消订单数量,own_day归属日期

@@ -1,0 +1,31 @@
+1.预警列表
+ 对应接口：/v1/manager/bcprohedgeconfig
+ 返回 maxpositionvol 最大持仓数，minavailable最小可用，marginratio保证金率，noticeswitch1: 开 0:关
+
+
+
+2.预警设置
+地址：/v1/manager/bcprohedgewarnset
+传参：configid 数据id，maxpositionvol 最大持仓数，minavailable最小可用，marginratio保证金率，noticeswitch1: 开 0:关
+返回：{"ret": 0,"msg": ""}
+
+3. 对冲系统预警开关设置
+地址：/v1/manager/bcprohedgewarnswitch
+传参：configid数据id，noticeswitch 1: 开 0:关
+返回：{"ret": 0,"msg": ""}
+
+4.获取邮件列表
+地址：/v1/manager/bcprohedgemaillist
+返回：{"ret": 0,"msg": "","data":[]}
+
+5.添加修改邮件
+地址：/v1/manager/bcprohedgemailup
+参数 mail （;隔开）
+返回：{"ret": 0,"msg": ""}
+
+6.获取预警邮件列表
+ 地址：/v1/manager/bcprohedgenotice
+ 参数：star，end，pageNo，pagesize，ttype 0全部 1：资产类 2：交易类 3：API状态类
+返回： {"ret": 0,"msg": "","data":{}}
+解释：noticeid数据id,noticetype预警类型 1：资产类 2：交易类 3：API状态类，noticecontent内容，email发送人，noticestatus状态 1成功0失败
+createdby创建时间，hedgeaccount账户，contractcode对冲代码

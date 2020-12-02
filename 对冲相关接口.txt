@@ -1,0 +1,42 @@
+1.获取合约持仓数据
+ 地址：/v1/manager/bcprohedgeposition
+ 参数：
+ 返回：{"ret": 0,"msg": "","data":{"bcposition": [{}],"hedgeposition": [{}]}}
+ 字段解释：bcposition为basecoin持仓汇总解释： contractcode合约代码，netvalue 多空净值，bvalue持多价值，svalue持空价值，bprice持多单开仓均价，sprice持空单开仓均价，bfloatprofit多单未实现盈亏，sfloatprofit空单未实现盈亏，bmargin多单占用保证金，smargin空单占用保证金
+  hedgeposition对冲持仓汇总：hedgeaccount对冲账户，contractaccount合约账户，volume持仓张数，forceprice强平价格，longvalue多价值，shortvalue持空价值，longprice持多开仓均价，shortprice持空开仓均价，uncloseprofit未实现盈亏
+
+2.获取对冲合约资产
+地址：/v1/manager/bcprohedge
+ 参数：hedaccount对冲子账户，accountid合约账户，star，end，pageNo，pagesize
+ 返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}}
+解释：historyid	数据id,	hedgeaccount对冲子账号,contractaccount合约账户,available用数量,usedamount已用数量,balance账户权益,closeprofit已实现盈亏,uncloseprofit未实现盈亏,lockamount冻结数量,marginratio保证金率,maintenancemarginratio维持保证金率,createdat	时间
+
+3.对冲账号持仓历史
+ 地址：v1/manager/bcprohedgepositionhistory
+ 参数：hedaccount对冲子账户，accountid合约账户，star，end，pageNo，pagesize
+ 返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}}
+ 解释：positionid数据id,hedgeaccount对冲子账号,contractaccount合约账户,forceprice强平价格,longvalue持多价值,shortvalue持空价值,longprice持多开仓均价,shortprice	持空开仓均价,uncloseprofit未实现盈亏，createdat	记录时间
+
+4.获取对冲账户配置
+
+ 地址：/v1/manager/bcprohedgeconfig
+ 参数：{}
+ 返回：{"ret": 0,"msg": "","data":{[]}}
+ 解释：contractcode合约，hedgeaccount子账户，createdat创建时间，updatedat修改时间，apistatus api状态0失败 1成功，hedgestatus对冲状态0辅助对冲1主对冲
+
+
+5.获取子账号列表
+ 地址：/v1/manager/bcprohedgeaccountlist
+ 返回：{"ret": 0,"msg": "","data":{[]}}
+ 解释：hedgeaccount子账户
+
+
+ 6.对冲账户重置和添加
+  地址：/v1/manager/bcprohedgeconfigup
+  参数：hedaccount子账户id 添加为空 字符串类型，privatekey私钥，publickey公钥，hintphrase短语，hedgestatus 对冲状态0辅助对冲1主对冲，ttype 1重置，2添加，3设置主对冲
+  返回：{"ret": 0,"msg": ""}
+
+7.配置合约账户
+ 地址：/v1/manager/bcprohedgeconfigset
+ 参数：hedaccount对冲子账户，margindirection保证金方向0：正向 1：反向，contracttype 0: 永续合约  1: 交割合约 ，accounttype账户模式 0: 全仓 1：逐仓，contractcode合约代码，lever杠杆倍数
+  

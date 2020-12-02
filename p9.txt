@@ -1,0 +1,42 @@
+ 1.空投上传文件
+  地址：/managers/v1/manager/bcproairdropupload
+  参数：uploadfile，ts,sign
+  返回：{"ret": 0,"msg": "","data":{}}
+  解释：filename 上传文件名字，peoples人数，amount数量
+
+ 2.空投确认提交
+  地址：/managers/v1/manager/bcproairdropsubmit
+  参数：filename文件名字，coin_name币种名字，amount数量(float)，peoples人数(int)，mark备注，coin_id币种id （int）
+  返回：{"ret": 0,"msg": "","data":{}}
+
+3.空投审核
+  地址：/managers/v1/manager/bcotcairdropcheck
+  参数：Upid 数据id，ttype 1通过2拒绝
+  返回：{"ret": 0,"msg": "","data":{}}
+
+4.空投审核列表
+  地址：/managers/v1/manager/bcotcairdroplist
+  参数：star，end，pageNo，pagesize，ttype -1全部  0 待审核 1通过2拒绝（int）
+  返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}}
+  解释：id数据id，coinid币种id，coinname币种名字，stats 0 待审核 1通过2拒绝，numbers空投总人数，fail_numbers失败人数，amount空投总数量，apply_name申请人，apply_time申请时间，examine_name审核人，examine_time审核时间，mark备注，suburl提交url
+
+ 5.空投失败列表
+  地址：/managers/v1/manager/bcotcairdropfaillist
+  参数：pid 数据id，pageNo，pagesize
+ 返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}}、
+ 解释：id数据id，userid用户id，coin_name币种名字，amount数量，coin_id币种id，stats 0 待处理（失败） 1通过2拒绝
+ 
+ 6.财务账号划转
+  地址：/managers/v1/manager/bcprofinacetransfer
+  参数：amount数量（float64），coin_id币种id，ttype 1 C2C结算 2其他用用途
+  返回：{"ret": 0,"msg": "","data":{}}
+
+ 7.财务账号c2c划转历史记录
+  地址：/managers/v1/manager/bcprofinacec2chistroy
+  参数：pageNo，pagesize，star，end
+  返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}}
+  解释：id数据id，userid用户Id，coinid	币种id,coinname	种名称,amount金额,amountafter平台钱余额,optype操作类型id 1-交易手续费 4-提币手续费 8-盈亏收入 9-资金费用 100-平台账户充币 200-平台账户提币 300-转入 301-转入到交易账户 302-转入到资产账户 310-转出 311-转出到交易账户 312-转出到资产账户 320-平台提币手续费 330-邀请佣金奖励 331-代理佣金奖励 332-空投 333-C2C结算，334-C2C其他用途,remark标记内容,opusername操作者用户名,sourceid来源订单id,mark备注,createat时间
+
+
+8.资产表
+  增加platformc2cmaccout c2c账户余额

@@ -1,0 +1,221 @@
+1.获取公告列表
+ 地址：/managers/v1/manager/bcpronoticelist
+ 参数：pageNo,pagesize
+ 返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}}
+ 字段解释：id 公告id,title中文标题，abstract中文摘要，content中文正文，contenten英文正文,abstracten英文摘要,titleen英文标题,createdate发布时间,isstop是否置顶,weight权重,值越大排位越靠前
+
+2.修改添加公告
+  地址：/managers/v1/manager/bcpronoticeupadd
+  参数：type 1添加2修改，id 被修改id没有0  ,title中文标题，abstract中文摘要，content中文正文，contenten英文正文,abstracten英文摘要,titleen英文标题
+返回：{"ret": 0,"msg": ""}
+ 
+3.公告置顶
+ 地址：/managers/v1/manager/bcpronoticeroof
+ 参数：id被修改id，isstop 1置顶0取消
+ 返回：{"ret": 0,"msg": ""}
+
+4.用户列表
+  地址：/managers/v1/manager/bcprouserlist
+  传参 pageNo,pagesize,uid,username
+  返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}}
+  解释：userid用户id，username用户名（手机号/邮箱），invitecode	本人邀请码，lastlogintime最后一次登录时间，enablelogin	1: 允许登录 0: 禁止登录，enablewithdraw 1: 允许提币 0: 禁止提币，enabletrade	1: 允许交易 0: 禁止交易,createdtime注册时间,traderaccount 交易账户资金，assetaccount 
+资产账户
+
+
+5.修改用户状态
+ 地址：/managers/v1/manager/bcprouserup
+ 传参enablelogin1: 允许登录 0: 禁止登录，enablewithdraw 1: 允许提币 0: 禁止提币，enabletrade 1: 允许交易 0: 禁止交易，uid 用户id
+ 返回：{"ret": 0,"msg": ""}
+
+6.获取用户资产信息
+  地址：/managers/v1/manager/bcprouserwallet
+  传参：uid，tdate
+  返回 {"ret": 0,"msg": "","data":{}}
+  解释：coinname币种名字，totalrecharge累计充币，totalwithdraw累计提币，totalinto累计转入，totalout累计转出
+
+7.获取交易账户资产信息
+  地址：/managers/v1/manager/bcprousertraderstat
+  传参：uid，tdate
+  返回：{"ret": 0,"msg": "","data":{}}
+  解释：coinname币种名字，totalprofit累计实现盈亏，totalfee累计手续费，totalinto累计转入，totalout累计转出，balance用户资产，floatprofit账户权益，available可用余额，margin保证金
+
+8.获取用户当日持仓信息
+  地址：/managers/v1/manager/bcprousertradershop
+  参数：uid，tdate
+  返回：{"ret": 0,"msg": "","data":{}}
+  解释：id持仓id,userid 用户id,contractcode合约代码,side B买S卖,price持仓均价,volume持仓张数,forceprice强平价,limit止盈价,stop止损价,accounttype账户模式 1：全仓 2：逐仓,lever杠杆,margin起始保证金,fundingfee资金费用,floatprofit未实现盈亏,available可用余额,profitratio盈亏率,marginratio保证金率,contractindex合约指数,buyprice买入价,sellprice卖出价
+
+
+9.资产账户财务记录
+  地址：/managers/v1/manager/bcprouserwalletbill
+  传参：uid，coinid -1全部，pageNo,pagesize，star,end,ttype 1查询财务记录，2查询提现，status 0：全部  1：申请已提交 2：已到账，
+  返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}}
+  解释：billid数据id，userid用户标识，type 1：充值  2：提现  4：划转到交易账户 8：从交易账户转入,status充值 1：未到账 2：已到账,  提现 1：申请已提交 2：已到账 3：审核通过 4：拒绝 
+其它为 2：已到账,currencyid 币种id,currencyname币种名称,tag 币种标签 ,amount数量,fromaddr来源地址,toaddr目标地址,balance用户账户可用数量,lockamount冻结数量,commission手续费,remarks提现备注,createdtime创建时间,approver审核人,approvedtime提现审核时间，orderid	提现大钱包CWSId其它为定单编号，ipaddress委托客户IP，imei设备识别码，orderclient委托客户端（1: android 2: iOS 3: 系统)
+
+
+10.资产提现审核
+  地址：/managers/v1/manager/bcprousercashaudit
+  参数：uid, billid数据id，status 1通过，2拒绝
+  返回：{"ret": 0,"msg": "",}
+
+11.币种列表
+ 地址：/managers/v1/manager/bcprocoinlist
+ 参数：{}
+ 返回：currencyid币种id，currencyname币种名称，walletname钱包名称，fullname币全称，precision精度（小数位），rechargeenable充值 1：开启 0：禁止,withdrawenable 提现 1：开启 0：禁止,minerfee单笔提币手续费,minwithdraw单笔最小提币,maxwithdraw单笔最大提币,withdrawreview单次提现审核数量,mintransfer资产划转单笔最小数量,maxtransfer资产划转单笔最大数量,status 0：下架 1：正常 ,cantransfer 0: 不支持划转 1:支持划转,withdrawtime单日提币次数,totalbalance 资产可用，totallock资产锁定，totalasset总资产
+
+12.币种设置
+ 地址：/managers/v1/manager/bcprocionsetup
+ 传参：coin币种id   status 0：下架 1：正常
+ 返回：{"ret": 0,"msg": ""}
+ 
+13.币种修改
+  地址：/managers/v1/manager/bcprocionupdate
+  传参：coinid币种id，minwithdraw单笔最小提币,maxwithdraw单笔最大提币，withdrawtime单日提币次数，minerfee单笔提币手续费
+  返回：{"ret": 0,"msg": ""}
+
+14.交易账户财务记录
+  地址：/managers/v1/manager/bcaccountlist
+  参数：uid，coinid -1全部，pageNo,pagesize，star,end
+  返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}}
+  解释：id流水号，userid用户id,currencyid币种id，currencyname币种,balance账户资产,available可用余额,type 1：交易手续费 2：资金费用 4：从资产账户转入 8：划转到资产账户  16：盈亏,amount	数量,createdtime创建时间,ipaddress客户IP,imei设备识别码,orderclient委托客户端（1: android 2: iOS 3: 系统)	
+
+15.资金费率
+   地址：/managers/v1/manager/bcproffundingfee
+   参数：contractcode交易对,star,end， pageNo,pagesize
+   返回：{"ret": 0,"msg": "","data":{"list": [{}]}}
+  解释：contractcode合约代码，fundingrate当期资金费率,estimatedrate预测资金费率,createdby
+
+
+16.资金费用
+   地址：/managers/v1/manager/bcprofunding
+   参数：contractcode交易对,star,end，pageNo,pagesize
+   返回：{"ret": 0,"msg": "","data":{"list": [{}]}}
+  解释：contractcode合约代码，coinid保证金id,	coinname保证金币种,fundingrate	资金费率,interval时间间隔,buytosell多向空支付费用,selltobuy空向多支付费用,totalamount账户总资产,createdby触发时间,feeid 
+
+
+ 17.资金明细
+ 地址：/managers/v1/manager/bcprofundingfeehistory
+ 参数：contractcode交易对,star,end，pageNo,pagesize,uid
+ 返回：{"ret": 0,"msg": "","data":{"list": [{}]}}
+ 解释：userid用户id，contractcode合约代码，coinid币种id，coinname结算币种，fundingrate资金费率，amount扣除或奖励费用，beforebalance扣除前 账户资产，beforecloseprofit扣除前 已实现盈亏,befterbalance除后 账户资产,aftercloseprofit扣除后 已实现盈亏	,createdby触发时间detailid数据id
+
+18.合约保证金配置
+  地址：/managers/v1/manager/bcprocontractcoinlist
+  参数：{}
+  返回：{"ret": 0,"msg": "","data":{}}
+  解释：currencyid币种id，  currencyname币种名称，precision精度（小数位），mintransfer资产划转单笔最小数量，maxtransfer	资产划转单笔最大数量，status 0：下架 1：正常，cantransfer 0: 禁止划转  1:支持划转 ，totalbalance账户资产，available可用余额， totalprofit账户权益，tradermargin仓位保证金
+
+
+19.添加保证金币种
+ 地址：/managers/v1/manager/bcprocontractcoinadd
+ 参数：coinid,coinname,mintransfer资产划转单笔最小数量，maxtransfer	资产划转单笔最大数量
+ 返回：{"ret": 0,"msg": ""}
+
+20.设置保证金币种
+ 地址：/managers/v1/manager/bcprocontractcoinset
+ 参数：coinid,status 0：下架 1：正常
+ 返回：{"ret": 0,"msg": ""}
+
+21.合约交易对列表
+  地址：/managers/v1/manager/bcprocontractset
+  传参{}
+  返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}}
+  字段解释：onlinestatus 上架状态，openorderenable可开仓（开关）0开，1关,closeorderenable可平仓（开关）0开1关，coinname结算币种，traderpairs交易对，feecomm 手续费，traderid合约id
+
+
+22.更改交易对设置
+ 地址 /managers/v1/manager/bcprocontractup
+ 传参：onlinestatus 上架状态0：上架  1：下架，openorderenable可开仓0开，1关,closeorderenable可平仓0开1关，ispositions 全部平仓1平仓，islodge全部撤单 1扯淡,traderid合约id ,procode合约代码
+ 返回：{"ret": 0,"msg": ""}
+
+23.添加修改交易对
+  地址：/managers/v1/manager/bcprocontractadd
+  传参：coinid结算币种id，coinname结算币种名字， valuationcoin计价币种，positive正反方向，合约面值1张 mumber,交易对精度accuracy,keepbond维持保证金率，changeprice最小变动价，maxorder最大下单，feecomm 手续费，逐仓倍数graduallymult，fullmult全仓倍数，contractfrom 合约指数来源，contractname此合约中文名称，contractnameen此合约英文名称 ，indexprecision指数价格精度，markprecision标记价格精度，buyposivolume 最大持仓，ttype 1修改 2添加，traderid合约id
+  返回： {"ret": 0,"msg": ""}
+ 
+24.交易对排序
+ 地址：/managers/v1/manager/bcprocontractsort
+ 参数：orderby(与公告的weight方式相同)，isshow 0:隐藏  1:显示，contractid合约id，contractcode 合约代码
+  返回： {"ret": 0,"msg": ""}
+
+25.成交记录
+ 地址：/managers/v1/manager/bcprotraderhistory
+ 传参：contractcode合约代码,type -1：全部 0：普通成交 1：强平成交，side （空全部 B买S卖)， uid ，star,end ,pageNo,pagesize，tradeid  成交编号
+ 返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}}
+ 解释：tradeid交编号,userid ,orderid	bigint报单编号,contractcode合约代码,side B买S卖	,offset	O: 开仓 C: 平仓,price成交价格,volume成交张数,tradevalue成交价值,commission手续费,accounttype账户模式 1：全仓 2：逐仓,lever杆,tradeamount成交金额,profit实现盈亏,ordertype 市价单 1：计划单 2：止盈单 4：止损单 5：强平单,limit止盈价,stop止损价,tradetime成交时间,ipaddress委托客户IP,imei设备识别码,orderclient委托客户端（1: android 2: iOS 3: 系统),balance账户资产,available可用余额,totalprofit累计已实现盈亏
+
+26.计划单
+  地址：/managers/v1/manager/bcproconditionorder  
+  参数：contractcode 合约代码，side空全部 B买S卖，uid ，star,end，pageNo,pagesize
+  返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}}
+解释：planorderid计划单id，userid用户id，contractcode合约代码，sideB买S卖，offset O: 开仓 C: 平仓，orderamount下单金额，status 条件单状态(1: 未触发 0：取消 2：已触发 3: 触发失败），createtime提交时间,ordertime触发时间,canceltime取消时间,ipaddress	委托客户IP,imei设备识别码,orderclient委托客户端（1: android 2: iOS 3: WEB 4: H5 5: open_api),triggerprice触发价格,condition 1 >=, 2 <=,accounttype账户模式 1：全仓 2：逐仓,lever杠杆
+
+27.持仓信息
+   地址：/managers/v1/manager/bcproposition
+   参数：contractcode  交易对，side 空全部 B买S卖，torder 排序（按顺序）
+   返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}，"totalsum":{"nopc": 1122,"nopcbtc": 11.11} }
+   解释:nopc未平仓张数，nopcbtc未平仓合约价值, bprice 多单开仓均价,bporit 多单未实现盈亏,sprice空单开仓均价,sporit 空单未实现盈亏,
+   userid 用户id，contractcode合约代码，sideB买S卖,volume持仓张数,price实际开仓均价,nominalprice名义开仓均价,accounttype账户模式 1：全仓 2：逐仓,lever杠杆,forcecloseprice强平价格,initmargin起始保证金，positionmargin仓位保证金，adjustmargin调整保证金，floatprofit未实现盈亏，profitratio盈亏率，roic	回报率
+
+
+28.指数信息
+  地址： /managers/v1/manager/bcproindexhistory
+  参数：contractcode  交易对, pageNo,pagesize，star,end
+  返回：{"ret": 0,"msg": "","data":{"list": [{}]}}
+解释：indexid 指数id,contractcode合约,contractindex合约指数，buyprice买入价，sellprice卖出价,createdtime 
+
+29.指数详细信息
+ 地址： /managers/v1/manager/bcproindexdatail
+ 参数：indexid  指数id
+ 返回： {"ret": 0,"msg": "","data":{}}
+参数：detailid 详细id,indexid 对应指数id,level档位,buyprice买盘价，buyvolume买盘张数，sellprice卖盘价，sellvolume卖盘数	
+
+
+30.获取资产表//
+  地址：/managers/v1/manager/bcprofinacewallet
+  参数：tdate
+  返回： {"ret": 0,"msg": "","data":{}}
+  参数：coinid币种id,coinname币种名字，walletbalance用户账户可用，withdrawlock用户账户锁定和提币锁定，totalwallet用户资产，accountbalance交易账户资产，accountavailable交易账户可用，accountprofit账户权益，totalaccount交易账户，platformbalance平台资产，platformliabilities平台负债，platformaccout交易账户资产,platformaccoutporit 已实现盈亏，totalplatform平台合计，chainwallet链上钱包资产，
+
+
+31.获取平台资产//
+  地址：/managers/v1/manager/bcprofinaceasst
+  传参： type 1平台资产，2负债资产
+  返回：{"ret": 0,"msg": "","data":{"list": [{}]}
+    解释：coinid 币种id，coinname币种名称,type 	1平台资产，2负债资产,amount余额,mixcharge最小充币,mixwith最小提币,fee手续费,amountlock锁定,address充币提币地址	，assetaward type为2时代表已实现盈亏 type为1时表示负债
+
+ 32.获取平台可分配流水//
+  地址：/managers/v1/manager/bcprofinaceassethistory
+  参数：star,end，pageNo,pagesize
+  返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1} }
+  解释：
+userid用户Id，coinid币种id，coinname币种名称，amount金额，amountafter平台钱余额,optype操作类型id,1.盈利结算-手续费,2亏损结算,3手续费_提现完成,4.资产账号提币费,5资产提币,remark操作类型标记,opusername操作者用户名,sourceid来源订单id,createat创建时间，mark备注
+
+ 33.获取平台负债流水 //
+  地址：/managers/v1/manager/bcprofinacecapitalhistory
+  参数：star,end，pageNo,pagesize
+  返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1} }
+  解释：
+userid用户Id，coinid币种id，coinname币种名称，amount金额，amountafter平台钱余额,optype操作类型id,1.盈利结算-手续费,2亏损结算,3手续费_提现完成,4.资产账号提币费,5资产提币,remark操作类型标记,opusername操作者用户名,sourceid来源订单id,createat创建时间，mark备注
+
+
+34.计划单撤单
+  地址：/managers/v1/manager/bcproconditionsheetcancel
+  参数：orderid 撤单id,uid,procode
+  返回：{"ret": 0,"msg": ""}
+
+ 35.验证管理员谷歌//
+ 地址：/managers/v1/manager/bcprofinaceckeckvkey
+ 参数：code 谷歌验证码，vkey谷歌串传空
+ 返回：
+
+ 36.管理员发送短信//
+  地址：/managers/v1/manager/bcsendsmsadmin
+  参数：{}
+  返回：{"ret": 0,"msg": ""}
+ 
+37.管理员手机验证码验证//
+   地址：/managers/v1/manager/bccheckcodeadmin
+   参数：code验证码，amont提币数量，coinid提币id,addre提币地址
+   返回：{"ret": 0,"msg": ""}

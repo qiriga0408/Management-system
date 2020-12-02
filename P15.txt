@@ -1,0 +1,55 @@
+ 1.获取平台利润
+  地址：/managers/v1/manager/bcplatformprofit
+  传值： ttype 1月利润，2日利润   pageNo，pagesize
+  返回{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}}
+  解释：id数据id，net_profit净利润，trader_commission交易手续费，close_profit平仓平亏，burst_profit爆仓盈亏，capital_asset资金费用，withdraw_profit提币手续费，returning_amout返佣清算，airdrop_amount空投，bug_loss bug损失，total_profit累计净利润，ctype 1月2天，own_at归属日期
+
+
+2.获取平台tick数据
+  地址：/managers/v1/manager/bcmarkettick
+  传值：contractcode合约，   pageNo，pagesize，star，end
+  返回{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}}
+  解释：id数据id，contract_code合约代码，trade_price成交价，buy_price买入价，sell_price卖出价，index_price指数价格，trade_amount成交张数，create_time时间
+
+3.行情接口及价格预警
+  地址：/managers/v1/manager/bcmarketconfig
+  传值：
+  返回：{"ret": 0,"msg": "","data":{}}
+  解释：id数据id，api_name上手名字，api_url上手url,api_status连接状态 1正常0不正常，contract_codes订阅合约信息逗号隔开，notice_switch订阅开关 1开 0关，warning_threshold预警阈值 分为单位
+
+4.修改预警设置
+  地址：/managers/v1/manager/bcmarketconfig
+  传值： ttype 1设置阈值 2设置开关，   upid (int) 更新id ，vul （int） 数值 （设置开关时 1开 0关 ，其他为阈值）
+  返回：{"ret": 0,"msg": "","data":{}}
+
+5.查询预警邮件列表 （原有基础增加参数 ttype ）
+  地址：/managers/v1/manager/bcprohedgemaillist 
+  传值：ttype 1对冲 2行情
+  返回：{"ret": 0,"msg": "","data":{}}
+  注：原对冲也需加ttype
+
+6设置预警邮件 （原有基础价ttype）
+ 地址：/managers/v1/manager/bcprohedgemailup
+  传值：ttype 1对冲 2行情
+  返回：{"ret": 0,"msg": "","data":{}}
+  注：原对冲也需加ttype
+
+7.获取海外kyc列表
+ 地址：/managers/v1/manager/bcverifyhistorylist
+ 传值：pageNo，pagesize，star，end，uid， ttype 0全部，1申请，3通过，5拒绝，7 重置
+ 返回：{"ret": 0,"msg": "","data":{"list": [{}],"total": 1}}
+ 解释：id 数据id,user_id用户id,real_name户真实名,surname姓名-姓,forename姓名-名	,id_number证件号,type	0-大陆身份证，1-非大陆证件,state 认证状态: 0-未认证 1-身份信息认证中 2-身份信息认证失败 3-身份信息认证通过 4-人脸信息认证中 5-人脸信息认证失败 6-人脸信息认证通过，7-认证重置 ,err_code 错误码,err_info 错误信息,create_at创建时间,identity_update_at 重置时间，face_update_at	审核时间，operator审核人，id_photo证件上传url，birthday生日，age年龄，ckeck_operator重置人，user_name用户名，area_code国家区域，country_cn国家
+
+
+8 海外kyc审核
+  地址：/managers/v1/manager/bcupverifyhistory
+  传值：uid （int）用户id，Stats 3通过，5拒绝，errcode ，errmsg  (errcode 和errmsg对应关系    1101-证件信息不清晰，证件信息不支持扫描和复印，仅支持原件照片；1102-年龄未满18周岁，认证仅支持年满18周岁的成年用户；1103- 年龄超过75周岁，认证仅支持75周岁以下的用户； 1104-姓名与证件信息不一致； 1105-证件信息与注册时的国家地区不一致；)   birthday生日  age年龄 ，upid修改id
+  返回：{"ret": 0,"msg": "","data":{}}
+
+9 海外kyc重置
+  地址：/managers/v1/manager/bcupverifyreset
+  传值： uid（int） 用户uid，upid 更新id，stats 7重置
+
+  返回：{"ret": 0,"msg": "","data":{}}
+
+

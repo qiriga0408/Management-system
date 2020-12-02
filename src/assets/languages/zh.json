@@ -1,0 +1,63 @@
+{
+    "common": {
+        "home": "首页",
+        "login": "登录",
+        "register": "注册",
+        "zw": "中文",
+        "ew": "英文",
+        "bbjy": "币币交易",
+        "fbjy": "法币交易",
+        "tlb": "套利宝"
+    },
+    "login": {
+        "phonePlaceHolder": "手机号",
+        "emailPlaceHolder": "手机号/邮箱",
+        "VcodePlaceHolder": "验证码",
+        "invitePlaceHolder": "邀请码(选填)",
+        "ReadAndAgree": "我已阅读并同意",
+        "TermsofService": "《服务条款》",
+        "errorNum": "该手机号尚未注册",
+        "errorPass": "密码错误"
+    },
+    "message": {
+        "hint1": "该号码未进行注册",
+        "hint2": "密码错误",
+        "hint3": "请输入密码"
+    },
+    "footer": {
+        "platformServe": "平台服务",
+        "rateStandards": {
+            "name": "费率标准",
+            "details": {}
+        },
+        "currencyIntroduce": {
+            "name": "币种介绍",
+            "details": {}
+        },
+        "goUpApplication": {
+            "name": "上币申请",
+            "details": {}
+        },
+        "userSupport": "用户支持",
+        "serviceAgreement": {
+            "name": "服务协议",
+            "details": {}
+        },
+        "FAQ": {
+            "name": "常见问题",
+            "details": {}
+        },
+        "newsCenter": {
+            "name": "公告中心",
+            "details": {}
+        },
+        "helpCenter": {
+            "name": "帮助中心",
+            "details": {}
+        },
+        "contactUs": "联系我们",
+        "business":"商务",
+        "mediaCooperation":"媒体合作",
+        "contactCustomerService":"联系客服"
+    }
+}
